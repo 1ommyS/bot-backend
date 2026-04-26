@@ -1,3 +1,65 @@
 spring:
+  cloud.openfeign.client.config:
+    kinopoisk:
+      url: https://kinopoiskapiunofficial.tech/
+      logger-level: FULL
+      connect-timeout: 200
+      read-timeout: 30000
   application:
-    name: bot-backend
+    name: media-tracker-bot-spring
+  jpa.hibernate:
+    ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/media_tracker
+    username: media_tracker
+    password: media_tracker
+  threads:
+    virtual:
+      enabled: true
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 100
+        permittedNumberOfCallsInHalfOpenState: 10
+        slowCallDurationThreshold: 4s
+        slowCallRateThreshold: 10
+        failureRateThreshold: 30
+        waitDurationInOpenState: 1s
+        minimumNumberOfCalls: 20
+    instances:
+      kinopoisk:
+        baseConfig: default
+  retry:
+    configs:
+      default:
+        maxAttempts: 3
+        waitDuration: 100ms
+        retryExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - java.util.concurrent.TimeoutException
+          - java.io.IOException
+    instances:
+      kinopoisk:
+        base-config: default
+  rateLimiter:
+    configs:
+      default:
+        timeoutDuration: 5s
+        limitForPeriod: 10
+        limit-refresh-period: 1s
+    instances:
+      kinopoisk:
+        base-config: default
+server:
+  port: 8090
+
+business-logic:
+  telegram:
+    token: 8793078626:AAH3Am26HnWNXugocqA8a4wYGxYyGNCBRIY
+    username: mediatrackeritparkbot
+  kinopoisk:
+    base-url: https://kinopoiskapiunofficial.tech/
+    api-key: 8478f4ef-2d5b-46a5-bceb-429272ebc525

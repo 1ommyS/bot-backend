@@ -1,7 +1,7 @@
-package com.indistudia.mediatrackerbotspring.integration;
+package com.indistudia.botbackend.integration;
 
-import com.indistudia.mediatrackerbotspring.config.BusinessLogicProperties;
-import com.indistudia.mediatrackerbotspring.integration.dto.FilmSearchResponse;
+import com.indistudia.botbackend.config.BusinessLogicProperties;
+import com.indistudia.botbackend.integration.dto.FilmSearchResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;

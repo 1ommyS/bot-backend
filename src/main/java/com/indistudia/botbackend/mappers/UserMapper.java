@@ -2,7 +2,7 @@ package com.indistudia.botbackend.mappers;
 
 import com.indistudia.botbackend.controller.dto.UserDto;
 import com.indistudia.botbackend.domain.User;
-import com.indistudia.botbackend.dto.CreateUserDto;
+import com.indistudia.botbackend.controller.dto.CreateUserDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 

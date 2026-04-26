@@ -1,7 +1,9 @@
-package com.indistudia.mediatrackerbotspring.service;
+package com.indistudia.botbackend.service;
 
-import com.indistudia.mediatrackerbotspring.domain.User;
-import com.indistudia.mediatrackerbotspring.repository.UserRepository;
+import com.indistudia.botbackend.domain.User;
+import com.indistudia.botbackend.controller.dto.CreateUserDto;
+import com.indistudia.botbackend.mappers.UserMapper;
+import com.indistudia.botbackend.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +16,9 @@ import java.util.Optional;
 @Slf4j
 public class UserService {
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public Optional<User> findByTelegramId(Long telegramId) {
+    private Optional<User> findByTelegramId(Long telegramId) {
         return userRepository.findByTelegramId(telegramId);
     }
 
@@ -26,24 +29,24 @@ public class UserService {
         });
     }
 
-    @Transactional
-    public void save(User user) {
-        userRepository.save(user);
+    private User save(User user) {
+        return userRepository.save(user);
     }
 
-    public User getOrCreateByTelegramId(String username, Long telegramId) {
-        var userFromDb = findByTelegramId(telegramId);
+    @Transactional
+    public User create(CreateUserDto dto) {
+        return save(userMapper.toUser(dto));
+    }
+
+    @Transactional
+    public User getOrCreateByTelegramId(CreateUserDto dto) {
+        var userFromDb = findByTelegramId(dto.telegramId());
 
         if (userFromDb.isPresent()) {
             return userFromDb.get();
         }
-        var user = User.builder()
-                .telegramId(telegramId)
-                .username(username)
-                .build();
+        var user = userMapper.toUser(dto);
 
-        save(user);
-
-        return user;
+        return save(user);
     }
 }

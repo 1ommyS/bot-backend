@@ -1,4 +1,4 @@
-package com.indistudia.mediatrackerbotspring.domain;
+package com.indistudia.botbackend.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,6 +1,6 @@
-package com.indistudia.mediatrackerbotspring.config;
+package com.indistudia.botbackend.config;
 
-import com.indistudia.mediatrackerbotspring.integration.RestTemplateLoggingInterceptor;
+import com.indistudia.botbackend.integration.RestTemplateLoggingInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;

@@ -1,6 +1,6 @@
-package com.indistudia.mediatrackerbotspring.repository;
+package com.indistudia.botbackend.repository;
 
-import com.indistudia.mediatrackerbotspring.domain.User;
+import com.indistudia.botbackend.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

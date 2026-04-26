@@ -1,10 +1,10 @@
-package com.indistudia.mediatrackerbotspring.service;
+package com.indistudia.botbackend.service;
 
-import com.indistudia.mediatrackerbotspring.domain.Media;
-import com.indistudia.mediatrackerbotspring.domain.User;
-import com.indistudia.mediatrackerbotspring.domain.WatchEntry;
-import com.indistudia.mediatrackerbotspring.domain.vo.WatchEntryStatus;
-import com.indistudia.mediatrackerbotspring.repository.WatchEntryRepository;
+import com.indistudia.botbackend.domain.Media;
+import com.indistudia.botbackend.domain.User;
+import com.indistudia.botbackend.domain.WatchEntry;
+import com.indistudia.botbackend.domain.vo.WatchEntryStatus;
+import com.indistudia.botbackend.repository.WatchEntryRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class WatchEntryService {
     private final WatchEntryRepository watchEntryRepository;
 
     @Transactional
-    public void updateProgress(User user, Media media, WatchEntryStatus status) {
+    public WatchEntry updateProgress(User user, Media media, WatchEntryStatus status) {
         WatchEntry watchEntry = watchEntryRepository
                 .findByUserAndMedia(user.getId(), media.getId())
                 .orElseGet(() -> {
@@ -32,14 +32,12 @@ public class WatchEntryService {
         watchEntry.setStatus(status);
         watchEntry.setStatusChangedAt(LocalDateTime.now());
 
-        if (watchEntry.getId() == null) {
-            watchEntryRepository.save(watchEntry);
-        }
+        return watchEntryRepository.save(watchEntry);
     }
 
 
-    public List<WatchEntry> findLatest(User user, int limit) {
-        List<WatchEntry> entries = watchEntryRepository.findLatestByUserId(user.getId(), limit);
+    public List<WatchEntry> findLatest(User user) {
+        List<WatchEntry> entries = watchEntryRepository.findLatestByUserId(user.getId());
         return entries == null ? Collections.emptyList() : entries;
     }
 

@@ -1,7 +1,7 @@
-package com.indistudia.mediatrackerbotspring.service;
+package com.indistudia.botbackend.service;
 
-import com.indistudia.mediatrackerbotspring.domain.Media;
-import com.indistudia.mediatrackerbotspring.repository.MediaRepository;
+import com.indistudia.botbackend.domain.Media;
+import com.indistudia.botbackend.repository.MediaRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,15 +17,8 @@ public class MediaService {
     private final MediaRepository mediaRepository;
 
     @Transactional
-    public void save(Media media) {
-        mediaRepository.save(media);
-    }
-
-    @Transactional
     public void saveAll(List<Media> medias) {
-        medias.forEach(media ->
-                mediaRepository.save(media)
-        );
+        mediaRepository.saveAll(medias);
     }
 
     public List<Media> findByQuery(String query) {
@@ -34,5 +27,12 @@ public class MediaService {
 
     public Optional<Media> findByExternalId(String externalId) {
         return mediaRepository.findByExternalId(externalId);
+    }
+
+    public Media findByExternalIdOrThrow(String externalId) {
+        return findByExternalId(externalId).orElseThrow(() -> {
+            log.atError().addKeyValue("externalId", externalId).log("Media with this external id not found");
+            return new RuntimeException("Media with external id " + externalId + " not found");
+        });
     }
 }

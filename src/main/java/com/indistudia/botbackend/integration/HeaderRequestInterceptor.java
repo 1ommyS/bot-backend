@@ -1,4 +1,4 @@
-package com.indistudia.mediatrackerbotspring.integration;
+package com.indistudia.botbackend.integration;
 
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;

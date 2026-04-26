@@ -1,6 +1,6 @@
-package com.indistudia.mediatrackerbotspring.integration;
+package com.indistudia.botbackend.integration;
 
-import com.indistudia.mediatrackerbotspring.integration.dto.FilmSearchResponse;
+import com.indistudia.botbackend.integration.dto.FilmSearchResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

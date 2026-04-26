@@ -1,9 +1,9 @@
-package com.indistudia.mediatrackerbotspring.service;
+package com.indistudia.botbackend.service;
 
-import com.indistudia.mediatrackerbotspring.domain.Media;
-import com.indistudia.mediatrackerbotspring.integration.KinopoiskFeignHttpClient;
-import com.indistudia.mediatrackerbotspring.integration.dto.FilmSearchResponse;
-import com.indistudia.mediatrackerbotspring.mappers.MediaMapper;
+import com.indistudia.botbackend.domain.Media;
+import com.indistudia.botbackend.integration.KinopoiskFeignHttpClientAdapter;
+import com.indistudia.botbackend.integration.dto.FilmSearchResponse;
+import com.indistudia.botbackend.mappers.MediaMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
@@ -17,7 +17,7 @@ import java.util.Optional;
 @Service
 public class FilmsProxy {
     private final MediaService mediaService;
-    private final KinopoiskFeignHttpClient kinopoiskFeignHttpClient;
+    private final KinopoiskFeignHttpClientAdapter kinopoiskFeignHttpClient;
 
     @Cacheable(cacheNames = "find_films_cache", key = "#query")
     public List<Media> findFilms(String query) {

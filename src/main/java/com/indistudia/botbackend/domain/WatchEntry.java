@@ -1,6 +1,6 @@
-package com.indistudia.mediatrackerbotspring.domain;
+package com.indistudia.botbackend.domain;
 
-import com.indistudia.mediatrackerbotspring.domain.vo.WatchEntryStatus;
+import com.indistudia.botbackend.domain.vo.WatchEntryStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.indistudia.mediatrackerbotspring.integration;
+package com.indistudia.botbackend.integration;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;

@@ -1,4 +1,4 @@
-package com.indistudia.botbackend.dto;
+package com.indistudia.botbackend.controller.dto;
 
 public record CreateUserDto(
         Long telegramId,

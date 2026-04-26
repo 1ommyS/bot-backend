@@ -1,4 +1,4 @@
-package com.indistudia.mediatrackerbotspring.integration.dto;
+package com.indistudia.botbackend.integration.dto;
 
 import java.util.List;
 

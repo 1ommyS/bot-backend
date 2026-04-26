@@ -1,4 +1,4 @@
-package com.indistudia.mediatrackerbotspring.domain.vo;
+package com.indistudia.botbackend.domain.vo;
 
 public enum WatchEntryStatus {
     COMPLETED,

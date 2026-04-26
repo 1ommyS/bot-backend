@@ -1,4 +1,4 @@
-package com.indistudia.mediatrackerbotspring.config;
+package com.indistudia.botbackend.config;
 
 //@ConfigurationProperties("telegram.bot")
 public record TelegramConfig(

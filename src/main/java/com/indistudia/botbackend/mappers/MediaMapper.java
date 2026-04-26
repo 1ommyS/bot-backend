@@ -1,15 +1,16 @@
-package com.indistudia.mediatrackerbotspring.mappers;
+package com.indistudia.botbackend.mappers;
 
 
-import com.indistudia.mediatrackerbotspring.domain.Media;
-import com.indistudia.mediatrackerbotspring.integration.dto.FilmSearchResponse;
+import com.indistudia.botbackend.domain.Media;
+import com.indistudia.botbackend.integration.dto.FilmSearchResponse;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static com.indistudia.mediatrackerbotspring.util.StringUtils.firstNonBlank;
+import static org.apache.commons.lang3.StringUtils.firstNonBlank;
+
 
 public class MediaMapper {
     private static final String SOURCE_URL = "https://kinopoiskapiunofficial.tech/api/v2.2/films/%d";
